@@ -138,7 +138,7 @@ remains = list(map(int, input().split()))
 remain = deque()
 for ele in remains:
     remain.append(ele)
-total_count = 0
+total_count = []
 for _ in range(k):
     max_count = 0
     find_i_j_d = (0, 0, 0)
@@ -160,17 +160,7 @@ for _ in range(k):
     board = remove_block(board, where_i_j)
     # for ele in board:
     #     print(ele)
-    # cnt = 0
-    # for j in range(5):
-    #     if cnt >= max_count or len(remain)<=0:
-    #         break
-    #     for i in range(4,-1,-1):
-    #         if cnt >= max_count or len(remain) <= 0:
-    #             break
-    #         if board[i][j] == 0:
-    #             new_block = remain.popleft()
-    #             board[i][j] = new_block
-    #             cnt += 1
+
     board = refill(board, max_count, remain)
     # print("채우기")
     # for ele in board:
@@ -194,7 +184,7 @@ for _ in range(k):
             board = remove_block(board, curr_indices)
             board = refill(board, max_count, remain)
             max_count += check_count
-    total_count += max_count
+    total_count.append(max_count)
 
 
-print(total_count)
+print(" ".join(map(str, total_count)))
