@@ -139,7 +139,10 @@ remain = deque()
 for ele in remains:
     remain.append(ele)
 total_count = []
-for _ in range(k):
+# print(f'처음 보드')
+# for ele in board:
+#     print(ele)
+for time in range(k):
     max_count = 0
     find_i_j_d = (0, 0, 0)
     where_i_j = []
@@ -150,14 +153,16 @@ for _ in range(k):
     if max_count == 0:
         break
     # print(f'max_count = {max_count}')
-    # print(f"find_i_j = {find_i_j_d}")
+    # print(f"find_i_j_d = {find_i_j_d}")
     # print(where_i_j)
+
     board = change_board(board, find_i_j_d[0], find_i_j_d[1], find_i_j_d[2])
     # print("회전")
     # for ele in board:
     #     print(ele)
-    # print("지우기")
+
     board = remove_block(board, where_i_j)
+    # print("지우기")
     # for ele in board:
     #     print(ele)
 
@@ -165,6 +170,8 @@ for _ in range(k):
     # print("채우기")
     # for ele in board:
     #     print(ele)
+    # print(f'채운 후 remain')
+    # print(remain)
 
     need_search = True
     while need_search:
@@ -182,8 +189,18 @@ for _ in range(k):
             need_search = False
         else:
             board = remove_block(board, curr_indices)
-            board = refill(board, max_count, remain)
+            # print("지우기")
+            # for ele in board:
+            #     print(ele)
+            board = refill(board, check_count, remain)
+            # print("채우기")
+            # for ele in board:
+            #     print(ele)
+            # print(f'채운 후 remain')
+            # print(remain)
+            # print(f'새로 지워진 값 = {check_count}')
             max_count += check_count
+    # print(f'#{time + 1}번째 max_count = {max_count}')
     total_count.append(max_count)
 
 
