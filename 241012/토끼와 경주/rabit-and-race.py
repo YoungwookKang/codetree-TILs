@@ -15,6 +15,7 @@ dx = [0, 1, 2, 3]
 
 def move(direction, n, m, i, j, distance, temp_heap):
     if direction == 0:
+        distance %= 2 * (n - 1)
         i -= distance
         while 1 > i or i > n:
             if i < 1:
@@ -24,6 +25,7 @@ def move(direction, n, m, i, j, distance, temp_heap):
         temp.append((i+j, i, j))
 
     elif direction == 1:
+        distance %= 2 * (n - 1)
         i += distance
         while 1 > i or i > n:
             if i < 1:
@@ -32,6 +34,7 @@ def move(direction, n, m, i, j, distance, temp_heap):
                 i = 2 * n - i
         temp.append((i+j, i, j))
     elif direction == 2:
+        distance %= 2 * (m - 1)
         j -= distance
         while 1 > j or j > m:
             if j < 1:
@@ -40,6 +43,7 @@ def move(direction, n, m, i, j, distance, temp_heap):
                 j = 2 * m - j
         temp.append((i+j, i, j))
     elif direction == 3:
+        distance %= 2 * (m - 1)
         j += distance
         while 1 > j or j > m:
             if j < 1:
