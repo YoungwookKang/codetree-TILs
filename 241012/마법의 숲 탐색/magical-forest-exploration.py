@@ -14,8 +14,14 @@ def can_move(r, c):
     global board
     if c - 1 < 0 or c + 1 >= col or r + 1 >= row:
         return False
-    if board[r][c] != 0 or board[r+1][c] != 0 or board[r-1][c] != 0 or board[r][c + 1] != 0 or board[r][c-1] != 0 or board[r-1][c-1] != 0 or board[r-1][c+1] != 0 or board[r-2][c] != 0:
+    if board[r][c] != 0 or board[r+1][c] != 0 or board[r-1][c] != 0 or board[r][c + 1] != 0 or board[r][c-1] != 0:
         return False
+    if board[r - 1][c - 1] != 0 or board[r - 1][c + 1] != 0:
+        return False
+    if r - 2 >= 0:
+        if board[r - 2][c] != 0:
+            return False
+
     return True
 
 
@@ -47,7 +53,6 @@ def bfs(x, y):
 
 def move(r, c, d, golem_id):
     global board, exit_location, total_count
-    # print(f'r,c = {r,c}')
     if can_move(r + 1, c):
         move(r + 1, c, d, golem_id)
     elif can_move(r + 1, c - 1):
