@@ -49,7 +49,7 @@ def move_bfs(i,j,board,visited, idx):
                     return path+[(nx,ny)]
 t = 0
 count_stores = 0
-while True:
+while True or t < 1000:
     t+=1
     # print(f'{t}분')
     flag_idx = -1
@@ -77,7 +77,6 @@ while True:
             # print(f"{i}번째 편의점 찾음")
             count_stores += 1
 
-    
     if count_stores == m:
         break
 
